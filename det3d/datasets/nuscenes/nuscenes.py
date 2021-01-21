@@ -1,3 +1,4 @@
+from typing import Tuple, List
 import sys
 import pickle
 import json
@@ -32,7 +33,7 @@ class NuScenesDataset(PointCloudDataset):
         self,
         info_path,
         root_path,
-        nsweeps=1,
+        nsweeps=0,  # catch sweep mistake
         cfg=None,
         pipeline=None,
         class_names=None,
@@ -56,7 +57,7 @@ class NuScenesDataset(PointCloudDataset):
         self._name_mapping = general_to_detection
 
         self.version = "v1.0-trainval"
-        self.eval_version = "cvpr_2019"
+        self.eval_version = "detection_cvpr_2019"
 
     def reset(self):
         self.logger.info(f"re-sample {self.frac} frames from full set")
